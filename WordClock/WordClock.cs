@@ -45,8 +45,11 @@ namespace WordClock
             SetActivePositions(ref activePositions, layout.Positions[0]); // "ES"
             SetActivePositions(ref activePositions, layout.Positions[1]); // "IST"
 
-            // Entsscheidung über vormittag oder nachmittag (AM/PM)
-            SetActivePositions(ref activePositions, time.Hour < 12 ? layout.Positions[2] : layout.Positions[3]);
+            if (Formatter.UseAMPM)
+            {
+                // Entsscheidung über vormittag oder nachmittag (AM/PM)
+                SetActivePositions(ref activePositions, time.Hour < 12 ? layout.Positions[2] : layout.Positions[3]);
+            }
 
             // Volle Stunden
             if (time.Minute < 5)

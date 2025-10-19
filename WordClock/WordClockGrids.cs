@@ -54,8 +54,7 @@ namespace WordClock
                     (4, 5, 3), // 23  ELF (Stunden)
                     (8, 6, 5), // 24  ZWÖLF (Stunden)
                     (9, 8, 3), // 25  UHR
-                ]
-                )
+                ])
             },
             // Englishes Wortuhr-Layout
             {
@@ -82,7 +81,7 @@ namespace WordClock
                     (2, 6, 4), // 4   FIVE (Minutes)
                     (3, 5, 3), // 5   TEN (Minutes)
                     (2, 0, 6), // 6   TWENTY (Minutes)
-                        (2, 0, 4), // 7   DREI
+                    (0, 0, 0), // 7   not in English
                     (1, 2, 7), // 8   QUARTER
                     (3, 9, 2), // 9   TO
                     (4, 0, 4), // 10  PAST
@@ -101,8 +100,7 @@ namespace WordClock
                     (7, 5, 6), // 23  ELEVEN (Hour)
                     (8, 5, 6), // 24  TWELVE (Hour)
                     (9, 5, 6), // 25  OCLOCK
-                ]
-                )
+                ])
             },
         };
 
