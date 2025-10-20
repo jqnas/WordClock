@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
+using System.Text;
 
 namespace WordClock
 {
@@ -7,18 +8,39 @@ namespace WordClock
         // Konstanten
         public const string Version = "1.0.0";
 
+        // ANSI Farbcode Konstanten
+        private static readonly Dictionary<ConsoleColor, string> ConsoleColors = new()
+        {
+            { ConsoleColor.Black,           "\x1b[30m"},
+            { ConsoleColor.DarkRed,         "\x1b[31m"},
+            { ConsoleColor.DarkGreen,       "\x1b[32m"},
+            { ConsoleColor.DarkYellow,      "\x1b[33m"},
+            { ConsoleColor.DarkBlue,        "\x1b[34m"},
+            { ConsoleColor.DarkMagenta,     "\x1b[35m"},
+            { ConsoleColor.DarkCyan,        "\x1b[36m"},
+            { ConsoleColor.DarkGray,        "\x1b[37m"},
+            { ConsoleColor.Gray,            "\x1b[90m"},
+            { ConsoleColor.Red,             "\x1b[91m"},
+            { ConsoleColor.Green,           "\x1b[92m"},
+            { ConsoleColor.Yellow,          "\x1b[93m"},
+            { ConsoleColor.Blue,            "\x1b[94m"},
+            { ConsoleColor.Magenta,         "\x1b[95m"},
+            { ConsoleColor.Cyan,            "\x1b[96m"},
+            { ConsoleColor.White,           "\x1b[97m"} ,
+        };
+
         // Eigenschaften
         // Sprachinformationen der Wortuhr
         public WordClockCulture ClockCulture { get; }
 
         // Formatierer für die Wortuhr
-        public WordClockFormatter Formatter { get; set; }
+        public WordClockFormatter ClockFormatter { get; set; }
 
         // Konstruktor
         public WordClock(WordClockCulture clockCulture, WordClockFormatter formatter)
         {
             ClockCulture = clockCulture;
-            Formatter = formatter;
+            ClockFormatter = formatter;
         }
 
         // Methoden
@@ -45,7 +67,7 @@ namespace WordClock
             SetActivePositions(ref activePositions, layout.Positions[0]); // "ES"
             SetActivePositions(ref activePositions, layout.Positions[1]); // "IST"
 
-            if (Formatter.UseAMPM)
+            if (ClockFormatter.UseAMPM)
             {
                 // Entsscheidung über vormittag oder nachmittag (AM/PM)
                 SetActivePositions(ref activePositions, time.Hour < 12 ? layout.Positions[2] : layout.Positions[3]);
@@ -128,8 +150,23 @@ namespace WordClock
             StringBuilder s = new();
 
             // Definiert den horizontalen und vertikalen Abstand basierend auf dem Formatter
-            string horizontalSpacing = new(' ', Formatter.HorizontalSpacing);
-            string verticalSpacing = string.Concat(Enumerable.Repeat(Environment.NewLine, Formatter.VerticalSpacing + 1));
+            string horizontalSpacing = new(' ', ClockFormatter.HorizontalSpacing);
+            string verticalSpacing = string.Concat(Enumerable.Repeat(Environment.NewLine, ClockFormatter.VerticalSpacing + 1));
+
+            // Definiert eine Aktion zum Anhängen eines Zeichens mit der entsprechenden Farbe
+            Action<char, bool> AppendSection = ClockFormatter.DisableColor ? (c, _) => s.Append(c) : (c, active) =>
+            {
+                if (active)
+                {
+                    s.Append(ConsoleColors[ClockFormatter.ActiveColor]);
+                }
+                else
+                {
+                    s.Append(ConsoleColors[ClockFormatter.InActiveColor]);
+                }
+                s.Append(c);
+                s.Append("\x1b[0m"); // Reset color
+            };
 
 
             // Durchläuft alle Zeilen des Grids
@@ -140,15 +177,18 @@ namespace WordClock
                 int cols = layout.Grid.GetLength(1);
                 for (int col = 0; col < cols; col++)
                 {
-                    // Fügt das aktuelle Zeichen zum hinzu
+                    // Fügt das aktuelle Zeichen hinzu
                     if (activePositions[row, col])
                     {
-                        s.Append(layout.Grid[row, col]);
-                        s.Append("<");
+                        AppendSection(layout.Grid[row, col], true);
+                    }
+                    else if (!ClockFormatter.DontShowInActivePositions)
+                    {
+                        AppendSection(layout.Grid[row, col], false);
                     }
                     else
                     {
-                        s.Append(layout.Grid[row, col]);
+                        AppendSection(' ', false);
                     }
 
                     // Fügt horizontalen Abstand hinzu
@@ -158,6 +198,9 @@ namespace WordClock
                 // Neue Zeile nach jeder Zeile im Grid mit vertikalem Abstand
                 s.Append(verticalSpacing);
             }
+
+            // Entfernt den letzten vertikalen Abstand
+            s.Remove(s.Length - verticalSpacing.Length, verticalSpacing.Length);
 
             // Gibt den zusammengebauten String zurück
             return s.ToString();

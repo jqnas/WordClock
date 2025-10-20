@@ -31,6 +31,8 @@ Available Formatting Options:
 - `VerticalSpacing`: Specifies the number of empty lines between characters in the vertical direction.
 - `ActiveColor`: Specifies the color used for active characters/words.
 - `InactiveColor`: Specifies the color used for inactive characters/words.
+- `DisableColor`: Specifies whether to disable coloring in the output.
+- `DontShowInactivePositions`: Specifies whether to hide inactive characters/words in the output.
 
 ---
 

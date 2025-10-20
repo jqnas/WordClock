@@ -13,5 +13,9 @@
         // Farben
         public ConsoleColor ActiveColor { get; set; } = ConsoleColor.White;
         public ConsoleColor InActiveColor { get; set; } = ConsoleColor.Gray;
+
+        // Anzeige
+        public bool DisableColor { get; set; } = false;
+        public bool DontShowInActivePositions { get; set; } = false;
     }
 }
