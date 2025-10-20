@@ -55,45 +55,50 @@ Every language has its own layout defenitions:
 "en", // Name
 new(new char[10, 11] // Character Grid
 {
-    //        0    1    2    3    4    5    6    7    8    9    10
-    /* 0*/ { 'I', 'T', 'L', 'I', 'S', 'A', 'S', 'A', 'M', 'P', 'M' },
-    /* 1*/ { 'A', 'C', 'Q', 'U', 'A', 'R', 'T', 'E', 'R', 'D', 'C' },
-    /* 2*/ { 'T', 'W', 'E', 'N', 'T', 'Y', 'F', 'I', 'V', 'E', 'X' },
-    /* 3*/ { 'H', 'A', 'L', 'F', 'S', 'T', 'E', 'N', 'F', 'T', 'O' },
-    /* 4*/ { 'P', 'A', 'S', 'T', 'E', 'R', 'U', 'N', 'I', 'N', 'E' },
-    /* 5*/ { 'O', 'N', 'E', 'S', 'I', 'X', 'T', 'H', 'R', 'E', 'E' },
-    /* 6*/ { 'F', 'O', 'U', 'R', 'F', 'I', 'V', 'E', 'T', 'W', 'O' },
-    /* 7*/ { 'E', 'I', 'G', 'H', 'T', 'E', 'L', 'E', 'V', 'E', 'N' },
-    /* 8*/ { 'S', 'E', 'V', 'E', 'N', 'T', 'W', 'E', 'L', 'W', 'E' },
-    /* 9*/ { 'T', 'E', 'N', 'S', 'E', 'O', 'C', 'L', 'O', 'C', 'K' },
+    //         0    1    2    3    4    5    6    7    8    9    10
+    /*  0*/ { 'I', 'T', 'L', 'I', 'S', 'A', 'S', 'A', 'M', 'P', 'M' },
+    /*  1*/ { 'A', 'C', 'Q', 'U', 'A', 'R', 'T', 'E', 'R', 'D', 'C' },
+    /*  2*/ { 'T', 'W', 'E', 'N', 'T', 'Y', 'F', 'I', 'V', 'E', 'X' },
+    /*  3*/ { 'H', 'A', 'L', 'F', 'S', 'T', 'E', 'N', 'F', 'T', 'O' },
+    /*  4*/ { 'P', 'A', 'S', 'T', 'E', 'R', 'U', 'N', 'I', 'N', 'E' },
+    /*  5*/ { 'O', 'N', 'E', 'S', 'I', 'X', 'T', 'H', 'R', 'E', 'E' },
+    /*  6*/ { 'F', 'O', 'U', 'R', 'F', 'I', 'V', 'E', 'T', 'W', 'O' },
+    /*  7*/ { 'E', 'I', 'G', 'H', 'T', 'E', 'L', 'E', 'V', 'E', 'N' },
+    /*  8*/ { 'S', 'E', 'V', 'E', 'N', 'T', 'W', 'E', 'L', 'W', 'E' },
+    /*  9*/ { 'T', 'E', 'N', 'S', 'E', 'O', 'C', 'L', 'O', 'C', 'K' },
+    /* 10*/ { ' ', ' ', ' ', '?', '?', ' ', '?', '?', ' ', ' ', ' ' },
 },
 [ // Position Definitions
-    (0, 0, 2), // 0   IT
-    (0, 3, 2), // 1   IS
-    (0, 7, 2), // 2   AM
-    (0, 9, 2), // 3   PM
-    (2, 6, 4), // 4   FIVE (Minutes)
-    (3, 5, 3), // 5   TEN (Minutes)
-    (2, 0, 6), // 6   TWENTY (Minutes)
-    (0, 0, 0), // 7   not in English
-    (1, 2, 7), // 8   QUARTER
-    (3, 9, 2), // 9   TO
-    (4, 0, 4), // 10  PAST
-    (3, 0, 4), // 11  HALF
-    (8, 5, 6), // 12  TWELVE (Hour) -> Midnight
-    (5, 0, 3), // 13  ONE (Hour)
-    (6, 8, 3), // 14  TWO (Hour)
-    (5, 6, 5), // 15  THREE (Hour)
-    (6, 0, 4), // 16  FOUR (Hour)
-    (6, 4, 4), // 17  FIVE (Hour)
-    (5, 3, 3), // 18  SIX (Hour)
-    (8, 0, 5), // 19  SEVEN (Hour)
-    (7, 0, 5), // 20  EIGHT (Hour)
-    (4, 7, 4), // 21  NINE (Hour)
-    (9, 0, 3), // 22  TEN (Hour)
-    (7, 5, 6), // 23  ELEVEN (Hour)
-    (8, 5, 6), // 24  TWELVE (Hour)
-    (9, 5, 6), // 25  OCLOCK
+    (0, 0, 2),  // 0   IT
+    (0, 3, 2),  // 1   IS
+    (0, 7, 2),  // 2   AM
+    (0, 9, 2),  // 3   PM
+    (2, 6, 4),  // 4   FIVE (Minutes)
+    (3, 5, 3),  // 5   TEN (Minutes)
+    (2, 0, 6),  // 6   TWENTY (Minutes)
+    (0, 0, 0),  // 7   not in English
+    (1, 2, 7),  // 8   QUARTER
+    (3, 9, 2),  // 9   TO
+    (4, 0, 4),  // 10  PAST
+    (3, 0, 4),  // 11  HALF
+    (8, 5, 6),  // 12  TWELVE (Hour) -> Midnight
+    (5, 0, 3),  // 13  ONE (Hour)
+    (6, 8, 3),  // 14  TWO (Hour)
+    (5, 6, 5),  // 15  THREE (Hour)
+    (6, 0, 4),  // 16  FOUR (Hour)
+    (6, 4, 4),  // 17  FIVE (Hour)
+    (5, 3, 3),  // 18  SIX (Hour)
+    (8, 0, 5),  // 19  SEVEN (Hour)
+    (7, 0, 5),  // 20  EIGHT (Hour)
+    (4, 7, 4),  // 21  NINE (Hour)
+    (9, 0, 3),  // 22  TEN (Hour)
+    (7, 5, 6),  // 23  ELEVEN (Hour)
+    (8, 5, 6),  // 24  TWELVE (Hour)
+    (9, 5, 6),  // 25  OCLOCK
+    (10, 3, 1), // 26  1. Minute (Point for the first minute)
+    (10, 4, 1), // 27  2. Minute (Point for the second minute)
+    (10, 6, 1), // 28  3. Minute (Point for the third minute)
+    (10, 7, 1), // 29  4. Minute (Point for the fourth minute)
 ])        
 ```
 

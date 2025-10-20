@@ -132,6 +132,14 @@ namespace WordClock
                 }    
             }
 
+            // Detaillierte Minutenanzeige (Punkte)
+            int detailedMinutes = time.Minute % 5;
+            for (int i = 0; i < detailedMinutes; i++)
+            {
+                // Punkte für Minutenanzeige
+                SetActivePositions(ref activePositions, layout.Positions[26 + i]);
+            }
+
             return activePositions;
         }
 
