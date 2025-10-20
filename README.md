@@ -17,6 +17,7 @@ To use the WordClock library in your project, follow these steps:
 ### Example Code
 ```csharp
 WordClock wordClock = new(WordClockCulture.FromCultureName("de"), new WordClockFormatter());
+Console.WriteLine(wordClock.GetTimeInWords(TimeOnly.Parse(21:00)));
 ````
 
 ---
