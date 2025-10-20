@@ -12,7 +12,7 @@ namespace WordClock
         {
             // Deutsches Wortuhr-Layout
             {
-                "de",
+                "de-DE",
                 new(new char[11, 11]
                 {
                     //         0    1    2    3    4    5    6    7    8    9    10
@@ -63,7 +63,7 @@ namespace WordClock
             },
             // Englishes Wortuhr-Layout
             {
-                "en",
+                "en-US",
                 new(new char[11, 11]
                 {
                     //         0    1    2    3    4    5    6    7    8    9    10
@@ -116,7 +116,7 @@ namespace WordClock
 
 
         // Versucht, das Grid für die angegebene Kultur zu finden
-        public static bool TryGetGridForCulture(string cultureName, [NotNullWhen(true)] out WordClockLayout layout)
+        public static bool TryGetLayoutForCulture(string cultureName, [NotNullWhen(true)] out WordClockLayout layout)
         {
             // Versucht, das Grid aus dem Dictionary zu holen
             if (!Layouts.TryGetValue(cultureName, out layout))
@@ -128,17 +128,16 @@ namespace WordClock
         }
 
         // Überprüft, ob die angegebene Kultur unterstützt wird
-        public static bool IsCultureSupported(string cultureName)
+        public static bool ContainsLayoutForCulture(string cultureName)
         {
             return Layouts.ContainsKey(cultureName);
         }
 
         // Gibt eine Liste der unterstützten Kulturen zurück
-        public static IEnumerable<string> GetSupportedCultures()
+        public static IEnumerable<string> GetSupportedLayouts()
         {
             return Layouts.Keys;
         }
-
 
         // Struktur zur Darstellung des Wortuhr-Layouts
         public struct WordClockLayout

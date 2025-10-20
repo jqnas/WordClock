@@ -1,4 +1,4 @@
-# WordClock
+﻿# WordClock
 
 A simple word clock application built with C# .NET.
 
@@ -16,7 +16,7 @@ To use the WordClock library in your project, follow these steps:
 
 ### Example Code
 ```csharp
-WordClock wordClock = new(WordClockCulture.FromCultureName("de"), new WordClockFormatter());
+WordClock wordClock = new(WordClockCulture.FromCultureName("de-DE"), new WordClockFormatter());
 Console.WriteLine(wordClock.GetTimeInWords(TimeOnly.Parse(21:00)));
 ````
 
@@ -40,8 +40,8 @@ Available Formatting Options:
 ## Languages
 
 The WordClock Libary supports the different displaying languages defined in the `WordClockGrids.cs` file. Currently supported languages are:
-- German (de)
-- English (en)
+- German (de-DE)
+- English (en-US)
 
 Every language has its own layout defenitions:
 - Name of the language/culture (e.g. "en" for English) to reference the layout when using the library
@@ -53,7 +53,7 @@ Every language has its own layout defenitions:
 
 ### Example for the English layout:
 ```csharp
-"en", // Name
+"en-US", // Name
 new(new char[10, 11] // Character Grid
 {
     //         0    1    2    3    4    5    6    7    8    9    10
@@ -67,7 +67,7 @@ new(new char[10, 11] // Character Grid
     /*  7*/ { 'E', 'I', 'G', 'H', 'T', 'E', 'L', 'E', 'V', 'E', 'N' },
     /*  8*/ { 'S', 'E', 'V', 'E', 'N', 'T', 'W', 'E', 'L', 'W', 'E' },
     /*  9*/ { 'T', 'E', 'N', 'S', 'E', 'O', 'C', 'L', 'O', 'C', 'K' },
-    /* 10*/ { ' ', ' ', ' ', '?', '?', ' ', '?', '?', ' ', ' ', ' ' },
+    /* 10*/ { ' ', ' ', ' ', '■', '■', ' ', '■', '■', ' ', ' ', ' ' },
 },
 [ // Position Definitions
     (0, 0, 2),  // 0   IT
