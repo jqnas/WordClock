@@ -28,6 +28,7 @@ You can customize the formatting of the time display by changing the properties 
 
 Available Formatting Options:
 - `UseAMPM`: Specifies whether to use AM/PM notation (if the language supports it).
+- `Use5ToPastNotation`: Specifies whether to use 5 past or to half notation instead of 25 past or to.
 - `HorizontalSpacing`: Specifies the number of spaces between characters in the horizontal direction.
 - `VerticalSpacing`: Specifies the number of empty lines between characters in the vertical direction.
 - `ActiveColor`: Specifies the color used for active characters/words.

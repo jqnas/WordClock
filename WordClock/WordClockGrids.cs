@@ -8,7 +8,7 @@ namespace WordClock
         public const int HourIndexOffset = 12;
 
         // Dictionary, das die Grids für verschiedene Sprachen/Varianten enthält
-        private static readonly Dictionary<string, WordClockLayout> Layouts = new()
+        private static readonly Dictionary<string, WordClockLayout> Layouts = new(StringComparer.InvariantCultureIgnoreCase)
         {
             // Deutsches Wortuhr-Layout
             {

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Text;
+﻿using System.Text;
 
 namespace WordClock
 {
@@ -80,7 +79,7 @@ namespace WordClock
                 SetActivePositions(ref activePositions, layout.Positions[time.Hour % 12 + WordClockGrids.HourIndexOffset]); // Stunde
             }
             // Sonderfall für "FÜNF VOR HALB"
-            else if (time.Minute >= 25 && time.Minute < 30)
+            else if (ClockFormatter.Use5ToPastNotation && time.Minute >= 25 && time.Minute < 30)
             {
                 SetActivePositions(ref activePositions, layout.Positions[4]); // "FÜNF" (Minuten)
                 SetActivePositions(ref activePositions, layout.Positions[9]);
@@ -94,7 +93,7 @@ namespace WordClock
                 SetActivePositions(ref activePositions, layout.Positions[(time.Hour + 1) % 12 + WordClockGrids.HourIndexOffset]); // Stunde
             }
             // Sonderfall für "FÜNF NACH HALB"
-            else if (time.Minute >= 35 && time.Minute < 40)
+            else if (ClockFormatter.Use5ToPastNotation && time.Minute >= 35 && time.Minute < 40)
             {
                 SetActivePositions(ref activePositions, layout.Positions[4]); // "FÜNF" (Minuten)
                 SetActivePositions(ref activePositions, layout.Positions[10]);
@@ -129,7 +128,12 @@ namespace WordClock
                 else if(time.Minute < 25 || time.Minute > 35)
                 {
                     SetActivePositions(ref activePositions, layout.Positions[6]); // "ZWANZIG" (Minuten)
-                }    
+                }
+                else if (time.Minute < 30 || time.Minute > 30)
+                {
+                    SetActivePositions(ref activePositions, layout.Positions[4]);
+                    SetActivePositions(ref activePositions, layout.Positions[6]);
+                }
             }
 
             // Detaillierte Minutenanzeige (Punkte)
@@ -141,15 +145,6 @@ namespace WordClock
             }
 
             return activePositions;
-        }
-
-        // Markiert die aktiven Positionen im Grid basierend auf der angegebenen Position
-        private void SetActivePositions(ref bool[,] activePositions, (int row, int col, int length) position)
-        {
-            for (int i = 0; i < position.length; i++)
-            {
-                activePositions[position.row, position.col + i] = true;
-            }
         }
 
         // Baut einen String aus einem 2D-Char-Array (Grid) der Wortuhr
@@ -212,6 +207,15 @@ namespace WordClock
 
             // Gibt den zusammengebauten String zurück
             return s.ToString();
+        }
+
+        // Markiert die aktiven Positionen im Grid basierend auf der angegebenen Position
+        private static void SetActivePositions(ref bool[,] activePositions, (int row, int col, int length) position)
+        {
+            for (int i = 0; i < position.length; i++)
+            {
+                activePositions[position.row, position.col + i] = true;
+            }
         }
     }
 }

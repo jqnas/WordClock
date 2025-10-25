@@ -1,6 +1,6 @@
 ﻿using WordClock;
 
-WordClock.WordClock wordClock = new(WordClockCulture.FromCultureName("de-DE"), new WordClockFormatter() { ActiveColor = ConsoleColor.Green });
+WordClock.WordClock wordClock = new(WordClockCulture.FromCultureName("de-de"), new WordClockFormatter() { Use5ToPastNotation = true, ActiveColor = ConsoleColor.Green });
 
 while (true)
 {

@@ -5,6 +5,7 @@
         // Eigenschaften
         // Generale Einstellungen
         public bool UseAMPM { get; set; } = true;
+        public bool Use5ToPastNotation { get; set; } = false;
 
         // Abstände
         public int HorizontalSpacing { get; set; } = 3;
